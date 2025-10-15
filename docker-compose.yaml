@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  lab-implantacion-db:
+    image: postgres:14
+    container_name: lab-implantacion-postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - lab_implantacion_postgres_data:/var/lib/postgresql/data
+    networks:
+      - implantacion-net
+
+volumes:
+  lab_implantacion_postgres_data:
+
+networks:
+  implantacion-net:
+    driver: bridge
