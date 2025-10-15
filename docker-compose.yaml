@@ -17,6 +17,24 @@ services:
     networks:
       - implantacion-net
 
+  lab-implantacion-api:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    container_name: lab-implantacion-api
+    depends_on:
+      - lab-implantacion-db
+    environment:
+      DB_HOST: lab-implantacion-db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8090:8090"
+    networks:
+      - implantacion-net
+
 volumes:
   lab_implantacion_postgres_data:
 
