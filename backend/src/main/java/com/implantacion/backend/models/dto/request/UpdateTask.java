@@ -5,6 +5,5 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor
 @Getter @Setter @Builder
 public class UpdateTask {
-    private String title;
     private Boolean completed;
 }

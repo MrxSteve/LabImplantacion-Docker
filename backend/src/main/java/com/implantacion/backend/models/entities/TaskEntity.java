@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tasks")
@@ -12,13 +11,15 @@ import java.util.UUID;
 @Getter @Setter @Builder
 public class TaskEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String title;
-    private Boolean completed;
 
-    @Column(name = "created_at")
+    @Builder.Default
+    private Boolean completed = false;
+
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdAt;
 
     @PrePersist
