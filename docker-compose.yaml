@@ -35,6 +35,22 @@ services:
     networks:
       - implantacion-net
 
+  lab-implantacion-web:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+      args:
+        
+        VITE_API_URL: "http://localhost:8090/api"
+    container_name: lab-implantacion-web
+    depends_on:
+      - lab-implantacion-api
+    ports:
+      # expone Nginx (internamente 80). Puedes mapear 5173->80 para mantener hábito
+      - "5173:80"
+    networks:
+      - implantacion-net
+
 volumes:
   lab_implantacion_postgres_data:
 
