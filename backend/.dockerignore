@@ -1,24 +1,3 @@
-# Build artifacts
-target/
-!target/*.jar
-*.class
-*.jar
-*.war
-*.ear
-*.nar
-
-# IDE files
-.idea/
-*.iml
-*.ipr
-*.iws
-.vscode/
-.settings/
-.project
-.classpath
-.metadata/
-bin/
-
 # Git
 .git/
 .gitignore
