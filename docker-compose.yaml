@@ -16,6 +16,12 @@ services:
       - lab_implantacion_postgres_data:/var/lib/postgresql/data
     networks:
       - implantacion-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
   lab-implantacion-api:
     build:
